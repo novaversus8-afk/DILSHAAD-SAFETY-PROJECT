@@ -786,7 +786,56 @@ id="galleryList">
 
 </section>
 
+<!-- CUSTOMER REVIEWS -->
 
+<section class="section" id="reviews">
+
+<div class="title">
+<h2>⭐ Customer Reviews</h2>
+<p>हमारे customers का experience</p>
+</div>
+
+<div id="reviewsList"></div>
+
+<div class="panel" style="max-width:650px;margin:25px auto 0;">
+
+<h3 style="margin-bottom:15px;">अपना Review दें</h3>
+
+<input
+id="reviewName"
+type="text"
+placeholder="आपका नाम"
+style="margin-bottom:10px;">
+
+<select
+id="reviewRating"
+style="
+width:100%;
+padding:11px;
+border:1px solid #cbd5e1;
+border-radius:8px;
+margin-bottom:10px;">
+<option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+<option value="4">⭐⭐⭐⭐ 4 Stars</option>
+<option value="3">⭐⭐⭐ 3 Stars</option>
+<option value="2">⭐⭐ 2 Stars</option>
+<option value="1">⭐ 1 Star</option>
+</select>
+
+<textarea
+id="reviewText"
+placeholder="अपना Review लिखें..."
+style="width:100%;min-height:100px;margin-bottom:10px;"></textarea>
+
+<button
+class="btn green"
+onclick="submitReview()">
+⭐ Submit Review
+</button>
+
+</div>
+
+</section>
 <section
 class="section"
 id="contact">
@@ -1268,7 +1317,228 @@ const DB_VERSION=2;
 let db;
 
 const BUSINESS_KEY="business";
+/* =====================================================
+   CUSTOMER REVIEWS
+===================================================== */
 
+const REVIEW_STORE = "reviews";
+
+
+function getReviews(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(REVIEW_STORE)
+        ) || [];
+
+    }catch(e){
+
+        return [];
+
+    }
+
+}
+
+
+function saveReviews(reviews){
+
+    localStorage.setItem(
+        REVIEW_STORE,
+        JSON.stringify(reviews)
+    );
+
+}
+
+
+function submitReview(){
+
+    const name =
+        document.getElementById(
+            "reviewName"
+        ).value.trim();
+
+    const rating =
+        Number(
+            document.getElementById(
+                "reviewRating"
+            ).value
+        );
+
+    const text =
+        document.getElementById(
+            "reviewText"
+        ).value.trim();
+
+
+    if(!name){
+
+        alert("कृपया अपना नाम डालें।");
+
+        return;
+
+    }
+
+
+    if(!text){
+
+        alert("कृपया Review लिखें।");
+
+        return;
+
+    }
+
+
+    const reviews =
+        getReviews();
+
+
+    reviews.unshift({
+
+        id:Date.now(),
+
+        name:name,
+
+        rating:rating,
+
+        text:text,
+
+        date:new Date().toLocaleDateString("en-IN")
+
+    });
+
+
+    saveReviews(reviews);
+
+
+    document.getElementById(
+        "reviewName"
+    ).value="";
+
+
+    document.getElementById(
+        "reviewText"
+    ).value="";
+
+
+    renderReviews();
+
+
+    toast(
+        "⭐ आपका Review Submit हो गया!"
+    );
+
+}
+
+
+function renderReviews(){
+
+    const box =
+        document.getElementById(
+            "reviewsList"
+        );
+
+
+    if(!box) return;
+
+
+    const reviews =
+        getReviews();
+
+
+    box.innerHTML="";
+
+
+    if(reviews.length===0){
+
+        box.innerHTML=`
+
+        <div style="
+        background:white;
+        padding:25px;
+        text-align:center;
+        border-radius:12px;
+        border:1px solid #e4eaf2;">
+
+        अभी कोई Review नहीं है।<br>
+        <b>आप पहला Review दें ⭐</b>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    reviews.forEach(review=>{
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.style.cssText=`
+
+        background:white;
+        padding:20px;
+        border-radius:14px;
+        margin-bottom:14px;
+        border:1px solid #e4eaf2;
+        box-shadow:0 4px 15px #0001;
+
+        `;
+
+
+        const stars =
+            "⭐".repeat(
+                Number(review.rating)
+            );
+
+
+        card.innerHTML=`
+
+        <div style="
+        display:flex;
+        justify-content:space-between;
+        gap:10px;
+        flex-wrap:wrap;">
+
+            <strong>
+                ${safe(review.name)}
+            </strong>
+
+            <span>
+                ${stars}
+            </span>
+
+        </div>
+
+        <p style="
+        margin-top:10px;
+        color:#667085;">
+
+            ${safe(review.text)}
+
+        </p>
+
+        <small style="
+        color:#98a2b3;">
+
+            ${safe(review.date)}
+
+        </small>
+
+        `;
+
+
+        box.appendChild(card);
+
+    });
+
+}
 /* =====================================================
    SIMPLE DASHBOARD COUNTERS
 ===================================================== */

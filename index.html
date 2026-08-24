@@ -1,0 +1,2918 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Dilshaad Safety Project | Invisible Grill & Safety Net</title>
+
+<meta name="description"
+content="Dilshaad Safety Project - Invisible Grill, Safety Net, Pigeon Net, Balcony Net, Child Safety Net, Mosquito Net and Sports Net services in Taloja, Navi Mumbai.">
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f1f5f9;
+    color:#172033;
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* HEADER */
+.header{
+    background:#07152f;
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 18px rgba(0,0,0,.18);
+}
+
+.header-inner{
+    max-width:1200px;
+    margin:auto;
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 18px;
+    gap:12px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+}
+
+.brand img{
+    width:52px;
+    height:52px;
+    object-fit:cover;
+    border-radius:50%;
+    border:2px solid #fff;
+    background:#fff;
+}
+
+.brand-text{
+    min-width:0;
+}
+
+.brand-text strong{
+    display:block;
+    font-size:18px;
+    white-space:nowrap;
+}
+
+.brand-text span{
+    display:block;
+    font-size:12px;
+    color:#b9c7df;
+    margin-top:3px;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.btn{
+    border:0;
+    border-radius:8px;
+    padding:11px 16px;
+    font-weight:700;
+    font-size:14px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-blue{
+    background:#2563eb;
+    color:#fff;
+}
+
+.btn-green{
+    background:#16a34a;
+    color:#fff;
+}
+
+.btn-dark{
+    background:#111827;
+    color:#fff;
+}
+
+.btn-red{
+    background:#dc2626;
+    color:#fff;
+}
+
+.btn-light{
+    background:#fff;
+    color:#172033;
+    border:1px solid #d8dee9;
+}
+
+.btn-gold{
+    background:#f59e0b;
+    color:#111827;
+}
+
+/* HERO */
+.hero{
+    min-height:520px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    background:
+        linear-gradient(90deg,rgba(3,12,30,.88),rgba(3,12,30,.55),rgba(3,12,30,.2)),
+        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=85")
+        center/cover no-repeat;
+}
+
+.hero-content{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:70px 20px;
+    color:#fff;
+}
+
+.hero-small{
+    display:inline-block;
+    background:#2563eb;
+    padding:8px 13px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:clamp(38px,6vw,70px);
+    line-height:1.02;
+    max-width:850px;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#60a5fa;
+}
+
+.hero p{
+    max-width:720px;
+    font-size:18px;
+    line-height:1.7;
+    color:#e5e7eb;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:28px;
+}
+
+/* QUICK BAR */
+.quick-bar{
+    max-width:1100px;
+    margin:-45px auto 35px;
+    position:relative;
+    z-index:10;
+    padding:0 15px;
+}
+
+.quick-inner{
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 15px 40px rgba(15,23,42,.15);
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.quick-item{
+    padding:16px;
+    border-radius:12px;
+    background:#f8fafc;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.quick-icon{
+    width:45px;
+    height:45px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#dbeafe;
+    font-size:21px;
+}
+
+.quick-item strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+.quick-item small{
+    color:#64748b;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.section{
+    padding:55px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:34px;
+    margin-bottom:9px;
+}
+
+.section-title p{
+    color:#64748b;
+}
+
+/* SERVICES */
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.service-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 7px 25px rgba(15,23,42,.09);
+    border:1px solid #e5e7eb;
+    transition:.25s;
+}
+
+.service-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(15,23,42,.14);
+}
+
+.service-image{
+    width:100%;
+    height:245px;
+    object-fit:cover;
+    display:block;
+    background:#e2e8f0;
+}
+
+.service-body{
+    padding:20px;
+}
+
+.service-body h3{
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.service-body p{
+    color:#64748b;
+    line-height:1.6;
+    min-height:52px;
+    margin-bottom:17px;
+}
+
+.service-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+/* WHY US */
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.why-card{
+    background:#fff;
+    border-radius:16px;
+    padding:24px 16px;
+    text-align:center;
+    border:1px solid #e5e7eb;
+}
+
+.why-card .icon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+.why-card h3{
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.why-card p{
+    color:#64748b;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.gallery img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+/* ABOUT */
+.about-box{
+    background:#07152f;
+    color:#fff;
+    border-radius:22px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:35px;
+    align-items:center;
+}
+
+.about-box h2{
+    font-size:34px;
+    margin-bottom:15px;
+}
+
+.about-box p{
+    color:#cbd5e1;
+    line-height:1.8;
+}
+
+.about-list{
+    margin-top:20px;
+    display:grid;
+    gap:10px;
+}
+
+.about-list div{
+    display:flex;
+    gap:10px;
+}
+
+/* CONTACT */
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.contact-card{
+    background:#fff;
+    border-radius:18px;
+    padding:26px;
+    border:1px solid #e5e7eb;
+    box-shadow:0 7px 22px rgba(15,23,42,.07);
+}
+
+.contact-card h3{
+    font-size:23px;
+    margin-bottom:18px;
+}
+
+.contact-line{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    margin:17px 0;
+}
+
+.contact-line .ci{
+    width:42px;
+    height:42px;
+    flex:0 0 42px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eff6ff;
+}
+
+.contact-line strong{
+    display:block;
+    margin-bottom:4px;
+}
+
+.contact-line span,
+.contact-line a{
+    color:#64748b;
+    line-height:1.5;
+}
+
+.map-box{
+    width:100%;
+    height:390px;
+    border:0;
+    border-radius:15px;
+    margin-top:15px;
+}
+
+/* CTA */
+.cta{
+    background:linear-gradient(135deg,#2563eb,#07152f);
+    color:#fff;
+    border-radius:22px;
+    padding:45px 30px;
+    text-align:center;
+}
+
+.cta h2{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.cta p{
+    color:#dbeafe;
+    margin-bottom:22px;
+}
+
+/* FOOTER */
+.footer{
+    background:#050b18;
+    color:#fff;
+    padding:35px 20px;
+    margin-top:40px;
+}
+
+.footer-inner{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:center;
+}
+
+.footer small{
+    color:#94a3b8;
+}
+
+/* ADMIN */
+.admin-page{
+    display:none;
+    min-height:100vh;
+    background:#eef2f7;
+}
+
+.admin-top{
+    background:#07152f;
+    color:#fff;
+    padding:16px 20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.admin-top-inner{
+    max-width:1250px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.admin-main{
+    max-width:1250px;
+    margin:auto;
+    padding:25px 15px 60px;
+}
+
+.admin-title{
+    margin-bottom:20px;
+}
+
+.admin-card{
+    background:#fff;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
+    border:1px solid #e5e7eb;
+    box-shadow:0 5px 18px rgba(15,23,42,.07);
+}
+
+.admin-card h2{
+    margin-bottom:18px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.field.full{
+    grid-column:1/-1;
+}
+
+.field label{
+    font-size:13px;
+    font-weight:700;
+}
+
+.field input,
+.field textarea,
+.field select{
+    width:100%;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    padding:12px;
+    outline:none;
+    font-size:14px;
+    background:#fff;
+}
+
+.field textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.field input:focus,
+.field textarea:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+.logo-preview{
+    width:130px;
+    height:130px;
+    object-fit:cover;
+    border-radius:18px;
+    border:2px solid #dbeafe;
+    margin-top:8px;
+}
+
+.service-admin{
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:15px;
+    margin-top:15px;
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:18px;
+}
+
+.service-admin img{
+    width:180px;
+    height:140px;
+    border-radius:12px;
+    object-fit:cover;
+    background:#e2e8f0;
+}
+
+.service-admin-content{
+    display:grid;
+    gap:9px;
+}
+
+.service-admin-content input,
+.service-admin-content textarea{
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    padding:10px;
+    width:100%;
+}
+
+.service-admin-content textarea{
+    min-height:75px;
+    resize:vertical;
+}
+
+.admin-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+    margin-top:18px;
+}
+
+/* LOGIN */
+.login-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(2,6,23,.78);
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-box{
+    width:min(420px,100%);
+    background:#fff;
+    border-radius:20px;
+    padding:28px;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+.login-box img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    margin:0 auto 15px;
+}
+
+.login-box h2{
+    text-align:center;
+    margin-bottom:7px;
+}
+
+.login-box p{
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    padding:13px;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:6000;
+    background:#111827;
+    color:#fff;
+    padding:13px 18px;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    display:none;
+    max-width:320px;
+}
+
+/* FLOATING */
+.floating{
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    z-index:900;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+}
+
+.float-btn{
+    width:54px;
+    height:54px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:22px;
+    box-shadow:0 7px 20px rgba(0,0,0,.2);
+}
+
+.float-call{
+    background:#16a34a;
+}
+
+.float-wa{
+    background:#25d366;
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:3000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+
+.modal-box{
+    background:#fff;
+    width:min(500px,100%);
+    max-height:90vh;
+    overflow:auto;
+    border-radius:18px;
+    padding:22px;
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.close{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:0;
+    background:#f1f5f9;
+    font-size:20px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    .services-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .why-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .gallery{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-box{
+        grid-template-columns:1fr;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .header-inner{
+        align-items:flex-start;
+    }
+
+    .brand-text strong{
+        font-size:15px;
+    }
+
+    .brand-text span{
+        font-size:10px;
+    }
+
+    .nav .btn{
+        padding:8px 9px;
+        font-size:11px;
+    }
+
+    .hero{
+        min-height:540px;
+    }
+
+    .hero-content{
+        padding:65px 18px;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .quick-bar{
+        margin:-30px auto 20px;
+    }
+
+    .quick-inner{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:38px 0;
+    }
+
+    .section-title h2{
+        font-size:28px;
+    }
+
+    .services-grid{
+        grid-template-columns:1fr;
+    }
+
+    .why-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .gallery{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .gallery img{
+        height:150px;
+    }
+
+    .about-box{
+        padding:27px 20px;
+    }
+
+    .about-box h2{
+        font-size:27px;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .service-admin{
+        grid-template-columns:1fr;
+    }
+
+    .service-admin img{
+        width:100%;
+        height:220px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     CUSTOMER WEBSITE
+========================= -->
+
+<div id="customerPage">
+
+<header class="header">
+    <div class="header-inner">
+
+        <a href="#home" class="brand">
+            <img id="headerLogo" alt="Dilshaad Safety Project">
+            <div class="brand-text">
+                <strong id="headerBusinessName">Dilshaad Safety Project</strong>
+                <span>Invisible Grill & Safety Net Services</span>
+            </div>
+        </a>
+
+        <nav class="nav">
+            <a href="tel:7209000233" class="btn btn-green">
+                📞 Call
+            </a>
+
+            <a href="https://wa.me/917209000233?text=Hello%20Dilshaad%20Safety%20Project%2C%20mujhe%20quotation%20chahiye."
+               class="btn btn-green"
+               target="_blank">
+                💬 WhatsApp
+            </a>
+
+            <button class="btn btn-blue" onclick="openAdminLogin()">
+                🔐 Admin
+            </button>
+        </nav>
+
+    </div>
+</header>
+
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <span class="hero-small">
+            🛡️ PROFESSIONAL SAFETY SOLUTIONS
+        </span>
+
+        <h1>
+            Invisible Grill &
+            <span>Safety Net</span>
+            Services
+        </h1>
+
+        <p>
+            Balcony, windows और open areas के लिए
+            premium Invisible Grill, Safety Net,
+            Pigeon Net, Child Safety Net,
+            Mosquito Net और Sports Net installation.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="tel:7209000233" class="btn btn-green">
+                📞 Contact Now
+            </a>
+
+            <a href="https://wa.me/917209000233?text=Hello%20Dilshaad%20Safety%20Project%2C%20mujhe%20free%20quotation%20chahiye."
+               target="_blank"
+               class="btn btn-blue">
+                💬 WhatsApp Quote
+            </a>
+
+            <a id="heroMap"
+               target="_blank"
+               class="btn btn-light">
+                📍 Location
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="quick-bar">
+
+    <div class="quick-inner">
+
+        <div class="quick-item">
+            <div class="quick-icon">📞</div>
+            <div>
+                <strong id="quickPhone">7209000233</strong>
+                <small>Call for quotation</small>
+            </div>
+        </div>
+
+        <div class="quick-item">
+            <div class="quick-icon">📍</div>
+            <div>
+                <strong>Taloja, Navi Mumbai</strong>
+                <small>Service available nearby</small>
+            </div>
+        </div>
+
+        <div class="quick-item">
+            <div class="quick-icon">🛡️</div>
+            <div>
+                <strong>Professional Work</strong>
+                <small>Safety focused installation</small>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<main>
+
+<section class="section" id="services">
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>हमारी Services</h2>
+        <p>आपकी जरूरत के हिसाब से अलग-अलग safety solutions</p>
+    </div>
+
+    <div class="services-grid" id="servicesGrid"></div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>क्यों हमें चुनें?</h2>
+        <p>Professional installation और quality-focused service</p>
+    </div>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <div class="icon">🛡️</div>
+            <h3>Safety First</h3>
+            <p>Family, children और pets की safety के लिए solutions.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="icon">📐</div>
+            <h3>Accurate Measurement</h3>
+            <p>Area के हिसाब से proper measurement और quotation.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="icon">🔧</div>
+            <h3>Professional Work</h3>
+            <p>Clean और professional installation service.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="icon">💰</div>
+            <h3>Transparent Price</h3>
+            <p>Requirement के हिसाब से quotation और clear pricing.</p>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>हमारा काम</h2>
+        <p>Invisible Grill और Safety Net के realistic project photos</p>
+    </div>
+
+    <div class="gallery" id="gallery"></div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+    <div class="about-box">
+
+        <div>
+
+            <h2>आपकी Safety, हमारी Priority</h2>
+
+            <p id="aboutText">
+                Dilshaad Safety Project में हम balcony,
+                windows और open areas के लिए Invisible Grill
+                और विभिन्न प्रकार के Safety Net solutions
+                उपलब्ध कराते हैं।
+            </p>
+
+            <div class="about-list">
+
+                <div>✔️ Premium safety solutions</div>
+                <div>✔️ Balcony & Window protection</div>
+                <div>✔️ Pigeon & Bird protection</div>
+                <div>✔️ Child & Pet safety</div>
+                <div>✔️ Professional installation</div>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <img id="aboutLogo"
+                 style="width:100%;max-width:360px;display:block;margin:auto;border-radius:25px;background:#fff;padding:10px;"
+                 alt="Dilshaad Safety Project">
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="contact">
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>Contact & Location</h2>
+        <p>Quotation और site visit के लिए संपर्क करें</p>
+    </div>
+
+    <div class="contact-grid">
+
+        <div class="contact-card">
+
+            <h3>📞 Business Details</h3>
+
+            <div class="contact-line">
+                <div class="ci">🏢</div>
+                <div>
+                    <strong id="contactBusinessName">Dilshaad Safety Project</strong>
+                    <span>Invisible Grill & Safety Net Services</span>
+                </div>
+            </div>
+
+            <div class="contact-line">
+                <div class="ci">📱</div>
+                <div>
+                    <strong>Contact Number</strong>
+                    <a id="contactPhone" href="tel:7209000233">7209000233</a>
+                </div>
+            </div>
+
+            <div class="contact-line">
+                <div class="ci">💬</div>
+                <div>
+                    <strong>WhatsApp</strong>
+                    <a id="contactWhatsApp"
+                       target="_blank">
+                       7209000233
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-line">
+                <div class="ci">✉️</div>
+                <div>
+                    <strong>Email</strong>
+                    <a id="contactEmail"
+                       href="mailto:d.s.safetyprojects7484@gmail.com">
+                       d.s.safetyprojects7484@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-line">
+                <div class="ci">📍</div>
+                <div>
+                    <strong>Business Address</strong>
+                    <span id="contactAddress">
+                        Sector 11, Taloja, Navi Mumbai,
+                        Maharashtra - 410208, India
+                    </span>
+                </div>
+            </div>
+
+            <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:20px;">
+
+                <a id="contactCall"
+                   class="btn btn-green">
+                    📞 Call Now
+                </a>
+
+                <a id="contactWA"
+                   class="btn btn-blue"
+                   target="_blank">
+                    💬 WhatsApp
+                </a>
+
+                <a id="contactMap"
+                   class="btn btn-dark"
+                   target="_blank">
+                    📍 Open Google Maps
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <h3>📍 हमारा Location</h3>
+
+            <p style="color:#64748b;line-height:1.6;">
+                Sector 11, Taloja, Navi Mumbai,
+                Maharashtra - 410208
+            </p>
+
+            <iframe
+                id="mapFrame"
+                class="map-box"
+                loading="lazy"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+    <div class="cta">
+
+        <h2>Free Quotation के लिए Contact करें</h2>
+
+        <p>
+            अपनी balcony/window की measurement या photo
+            WhatsApp पर भेजें।
+        </p>
+
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+
+            <a id="ctaCall"
+               class="btn btn-green">
+                📞 7209000233
+            </a>
+
+            <a id="ctaWA"
+               target="_blank"
+               class="btn btn-light">
+                💬 WhatsApp Quote
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+<div class="footer-inner">
+
+    <div>
+        <strong id="footerBusinessName">
+            Dilshaad Safety Project
+        </strong>
+
+        <br>
+
+        <small>
+            Invisible Grill • Safety Net • Pigeon Net •
+            Balcony Net • Child Safety Net
+        </small>
+    </div>
+
+    <small>
+        © <span id="year"></span> Dilshaad Safety Project
+    </small>
+
+</div>
+
+</footer>
+
+
+<div class="floating">
+
+    <a id="floatCall"
+       class="float-btn float-call">
+        📞
+    </a>
+
+    <a id="floatWA"
+       class="float-btn float-wa"
+       target="_blank">
+        💬
+    </a>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     ADMIN PAGE
+========================= -->
+
+<div id="adminPage" class="admin-page">
+
+    <div class="admin-top">
+
+        <div class="admin-top-inner">
+
+            <div>
+                <strong>🔐 Dilshaad Safety Project</strong>
+                <div style="font-size:12px;color:#aebbd1;margin-top:3px;">
+                    Admin Dashboard
+                </div>
+            </div>
+
+            <button class="btn btn-red" onclick="logoutAdmin()">
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="admin-main">
+
+        <div class="admin-title">
+
+            <h1>Admin Dashboard</h1>
+
+            <p style="color:#64748b;margin-top:6px;">
+                यहाँ से customer website की business details,
+                photos और services बदल सकते हैं।
+            </p>
+
+        </div>
+
+
+        <!-- BUSINESS DETAILS -->
+
+        <div class="admin-card">
+
+            <h2>🏢 Business Details</h2>
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label>Business Name</label>
+                    <input id="adminBusinessName">
+                </div>
+
+                <div class="field">
+                    <label>Contact Number</label>
+                    <input id="adminPhone" type="tel">
+                </div>
+
+                <div class="field">
+                    <label>WhatsApp Number</label>
+                    <input id="adminWhatsApp" type="tel">
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input id="adminEmail" type="email">
+                </div>
+
+                <div class="field full">
+                    <label>Business Address</label>
+                    <textarea id="adminAddress"></textarea>
+                </div>
+
+                <div class="field full">
+                    <label>Google Maps Location Link</label>
+                    <input id="adminMap">
+                </div>
+
+                <div class="field full">
+                    <label>About Business</label>
+                    <textarea id="adminAbout"></textarea>
+                </div>
+
+                <div class="field full">
+
+                    <label>
+                        Business Logo / Photo
+                    </label>
+
+                    <input
+                        id="logoInput"
+                        type="file"
+                        accept="image/*">
+
+                    <img
+                        id="adminLogoPreview"
+                        class="logo-preview"
+                        alt="Logo Preview">
+
+                </div>
+
+            </div>
+
+            <div class="admin-actions">
+
+                <button class="btn btn-blue"
+                        onclick="saveBusinessDetails()">
+                    💾 Save Business Details
+                </button>
+
+                <button class="btn btn-light"
+                        onclick="loadAdminForm()">
+                    🔄 Reload
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SERVICES -->
+
+        <div class="admin-card">
+
+            <h2>🖼️ Services & Photos</h2>
+
+            <p style="color:#64748b;font-size:13px;">
+                Service का नाम, description और photo बदल सकते हैं।
+                Photo automatically compress होकर save होगी।
+            </p>
+
+            <div id="adminServices"></div>
+
+        </div>
+
+
+        <!-- SETTINGS -->
+
+        <div class="admin-card">
+
+            <h2>⚙️ Website Settings</h2>
+
+            <p style="color:#64748b;line-height:1.6;">
+                Customer website का data इस browser में save होता है।
+                Firebase या Google Cloud की जरूरत नहीं है।
+            </p>
+
+            <div class="admin-actions">
+
+                <button class="btn btn-gold"
+                        onclick="exportData()">
+                    📥 Backup Data
+                </button>
+
+                <button class="btn btn-red"
+                        onclick="resetWebsiteData()">
+                    ♻️ Reset Demo Data
+                </button>
+
+                <button class="btn btn-dark"
+                        onclick="showCustomerWebsite()">
+                    🌐 Customer Website
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- LOGIN -->
+
+<div id="loginOverlay" class="login-overlay">
+
+    <div class="login-box">
+
+        <img id="loginLogo" alt="Logo">
+
+        <h2>Admin Login</h2>
+
+        <p>
+            यह dashboard सिर्फ business owner के लिए है।
+        </p>
+
+        <input
+            id="adminPassword"
+            type="password"
+            placeholder="Admin Password"
+            autocomplete="current-password">
+
+        <button
+            class="btn btn-blue"
+            style="width:100%;"
+            onclick="loginAdmin()">
+            🔐 Login
+        </button>
+
+        <button
+            class="btn btn-light"
+            style="width:100%;margin-top:8px;"
+            onclick="closeAdminLogin()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- QUOTE MODAL -->
+
+<div id="quoteModal" class="modal">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2 id="quoteTitle">
+                Get Free Quote
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeQuote()">
+                ×
+            </button>
+
+        </div>
+
+        <p style="color:#64748b;line-height:1.6;margin-bottom:18px;">
+            नीचे अपनी basic details भरें।
+            WhatsApp पर quotation request भेज दी जाएगी।
+        </p>
+
+        <div class="field">
+            <label>Your Name</label>
+            <input id="quoteName" placeholder="आपका नाम">
+        </div>
+
+        <div class="field" style="margin-top:10px;">
+            <label>Requirement</label>
+            <textarea id="quoteRequirement"
+                      placeholder="जैसे Balcony Safety Net, Invisible Grill आदि"></textarea>
+        </div>
+
+        <button
+            class="btn btn-green"
+            style="width:100%;margin-top:15px;"
+            onclick="sendQuote()">
+            💬 Send on WhatsApp
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+
+/* =========================================================
+   DILSHAAD SAFETY PROJECT
+   NO FIREBASE VERSION
+========================================================= */
+
+/* ADMIN PASSWORD */
+const ADMIN_PASSWORD = "DS@2026#Safe";
+
+/* LOCAL STORAGE KEY */
+const STORAGE_KEY = "dilshaad_safety_project_v3";
+
+
+/* =========================================================
+   DEFAULT LOGO
+   यही Dilshaad Safety Project वाला logo है
+========================================================= */
+
+const DEFAULT_LOGO =
+"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////2wBDAf//////////////////////////////////////////////////////////////////////////////////////wAARCAEoASgDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAH/AP/EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEAAQUCf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8Bf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8Bf//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEABj8Cf//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEAAT8hH//Z";
+
+
+/*
+IMPORTANT:
+ऊपर का छोटा fallback logo सिर्फ तब इस्तेमाल होगा
+जब browser में saved logo न मिले।
+
+नीचे defaultLogoFull में आपका uploaded logo
+automatic रूप से use करने के लिए upload किया जा सकता है।
+*/
+
+
+/* =========================================================
+   DEFAULT DATA
+========================================================= */
+
+const DEFAULT_DATA = {
+
+    business:{
+        name:"Dilshaad Safety Project",
+        phone:"7209000233",
+        whatsapp:"7209000233",
+        email:"d.s.safetyprojects7484@gmail.com",
+        address:"Sector 11, Taloja, Navi Mumbai, Maharashtra - 410208, India",
+        map:"https://www.google.com/maps/search/?api=1&query=Sector+11+Taloja+Navi+Mumbai+Maharashtra+410208",
+        about:"Dilshaad Safety Project में हम balcony, windows और open areas के लिए Invisible Grill और विभिन्न प्रकार के Safety Net solutions उपलब्ध कराते हैं। Quality-focused material, professional installation और customer safety हमारी priority है।",
+        logo:DEFAULT_LOGO
+    },
+
+    services:[
+
+        {
+            id:"invisible-grill",
+            name:"Invisible Grill",
+            description:"Balcony और windows के लिए premium stainless-steel invisible grill. Clear view के साथ safety solution.",
+            image:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+            id:"safety-net",
+            name:"Safety Net",
+            description:"Balcony और open areas के लिए strong safety net. Children और pets की protection के लिए suitable.",
+            image:"https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+            id:"pigeon-net",
+            name:"Pigeon Safety Net",
+            description:"Balcony को pigeons और unwanted birds से बचाने के लिए durable pigeon safety net.",
+            image:"https://images.unsplash.com/photo-1494578379344-d6c710782a3d?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+            id:"balcony-net",
+            name:"Balcony / Bird Net",
+            description:"Balcony और open areas के लिए neat, durable और strong bird net protection.",
+            image:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+            id:"mosquito-net",
+            name:"Mosquito Net",
+            description:"Windows और ventilation areas के लिए mosquito protection net.",
+            image:"https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+            id:"child-safety",
+            name:"Child Safety Net",
+            description:"High-rise balcony और open spaces के लिए child safety focused net installation.",
+            image:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+            id:"sports-net",
+            name:"Sports Net",
+            description:"Cricket और अन्य sports areas के लिए strong sports net solutions.",
+            image:"https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1000&q=85"
+        }
+
+    ]
+
+};
+
+
+/* =========================================================
+   DATA LOAD
+========================================================= */
+
+let data = loadData();
+
+function loadData(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(STORAGE_KEY);
+
+        if(saved){
+
+            const parsed =
+                JSON.parse(saved);
+
+            return {
+                business:{
+                    ...DEFAULT_DATA.business,
+                    ...(parsed.business || {})
+                },
+
+                services:
+                    Array.isArray(parsed.services)
+                    ? parsed.services
+                    : DEFAULT_DATA.services
+            };
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+    return JSON.parse(
+        JSON.stringify(DEFAULT_DATA)
+    );
+
+}
+
+
+/* =========================================================
+   SAVE DATA
+========================================================= */
+
+function saveData(){
+
+    try{
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(data)
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "❌ Data save नहीं हो पाया। Browser storage full हो सकता है।"
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.style.display = "block";
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(()=>{
+            toast.style.display = "none";
+        },3000);
+
+}
+
+
+/* =========================================================
+   IMAGE COMPRESS
+========================================================= */
+
+function compressImage(file,maxWidth=1000,quality=.78){
+
+    return new Promise((resolve,reject)=>{
+
+        if(!file){
+            reject("No file");
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(e){
+
+            const img =
+                new Image();
+
+            img.onload = function(){
+
+                let width = img.width;
+                let height = img.height;
+
+                if(width > maxWidth){
+
+                    height =
+                        Math.round(
+                            height * maxWidth / width
+                        );
+
+                    width = maxWidth;
+
+                }
+
+                const canvas =
+                    document.createElement("canvas");
+
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx =
+                    canvas.getContext("2d");
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+                let result =
+                    canvas.toDataURL(
+                        "image/jpeg",
+                        quality
+                    );
+
+                /*
+                अगर image अभी भी बड़ी है,
+                तो quality और कम कर दें।
+                */
+
+                if(result.length > 900000){
+
+                    result =
+                        canvas.toDataURL(
+                            "image/jpeg",
+                            .55
+                        );
+
+                }
+
+                resolve(result);
+
+            };
+
+            img.onerror =
+                () => reject("Image error");
+
+            img.src = e.target.result;
+
+        };
+
+        reader.onerror =
+            () => reject("File error");
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+
+/* =========================================================
+   CUSTOMER WEBSITE RENDER
+========================================================= */
+
+function renderCustomer(){
+
+    const b = data.business;
+
+    document.getElementById(
+        "headerBusinessName"
+    ).textContent = b.name;
+
+    document.getElementById(
+        "headerLogo"
+    ).src = b.logo || DEFAULT_LOGO;
+
+    document.getElementById(
+        "aboutLogo"
+    ).src = b.logo || DEFAULT_LOGO;
+
+    document.getElementById(
+        "loginLogo"
+    ).src = b.logo || DEFAULT_LOGO;
+
+    document.getElementById(
+        "quickPhone"
+    ).textContent = b.phone;
+
+    document.getElementById(
+        "contactBusinessName"
+    ).textContent = b.name;
+
+    document.getElementById(
+        "contactPhone"
+    ).textContent = b.phone;
+
+    document.getElementById(
+        "contactPhone"
+    ).href =
+        "tel:" + cleanPhone(b.phone);
+
+    document.getElementById(
+        "contactWhatsApp"
+    ).textContent = b.whatsapp;
+
+    document.getElementById(
+        "contactWhatsApp"
+    ).href =
+        whatsappLink(b.whatsapp);
+
+    document.getElementById(
+        "contactEmail"
+    ).textContent = b.email;
+
+    document.getElementById(
+        "contactEmail"
+    ).href =
+        "mailto:" + b.email;
+
+    document.getElementById(
+        "contactAddress"
+    ).textContent = b.address;
+
+    document.getElementById(
+        "aboutText"
+    ).textContent = b.about;
+
+    const map =
+        b.map ||
+        DEFAULT_DATA.business.map;
+
+    document.getElementById(
+        "heroMap"
+    ).href = map;
+
+    document.getElementById(
+        "contactMap"
+    ).href = map;
+
+    document.getElementById(
+        "mapFrame"
+    ).src =
+        "https://www.google.com/maps?q=" +
+        encodeURIComponent(b.address) +
+        "&output=embed";
+
+    document.getElementById(
+        "contactCall"
+    ).href =
+        "tel:" + cleanPhone(b.phone);
+
+    document.getElementById(
+        "ctaCall"
+    ).href =
+        "tel:" + cleanPhone(b.phone);
+
+    document.getElementById(
+        "floatCall"
+    ).href =
+        "tel:" + cleanPhone(b.phone);
+
+    document.getElementById(
+        "contactWA"
+    ).href =
+        whatsappLink(b.whatsapp);
+
+    document.getElementById(
+        "ctaWA"
+    ).href =
+        whatsappLink(b.whatsapp);
+
+    document.getElementById(
+        "floatWA"
+    ).href =
+        whatsappLink(b.whatsapp);
+
+    document.getElementById(
+        "footerBusinessName"
+    ).textContent = b.name;
+
+    document.getElementById(
+        "year"
+    ).textContent =
+        new Date().getFullYear();
+
+    renderServices();
+    renderGallery();
+
+}
+
+
+/* =========================================================
+   SERVICES RENDER
+========================================================= */
+
+function renderServices(){
+
+    const grid =
+        document.getElementById(
+            "servicesGrid"
+        );
+
+    grid.innerHTML = "";
+
+    data.services.forEach(service=>{
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "service-card";
+
+        card.innerHTML = `
+
+            <img
+                class="service-image"
+                src="${escapeAttr(service.image)}"
+                alt="${escapeAttr(service.name)}"
+                loading="lazy"
+                onerror="this.src='${escapeAttr(DEFAULT_DATA.services[0].image)}'"
+            >
+
+            <div class="service-body">
+
+                <h3>
+                    ${escapeHTML(service.name)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(service.description)}
+                </p>
+
+                <div class="service-actions">
+
+                    <button
+                        class="btn btn-blue"
+                        onclick="openQuote('${escapeJS(service.name)}')">
+                        Get Quote
+                    </button>
+
+                    <a
+                        class="btn btn-green"
+                        target="_blank"
+                        href="${escapeAttr(
+                            whatsappLink(
+                                data.business.whatsapp,
+                                "Hello, mujhe " +
+                                service.name +
+                                " ka quotation chahiye."
+                            )
+                        )}">
+                        WhatsApp
+                    </a>
+
+                </div>
+
+            </div>
+
+        `;
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+function renderGallery(){
+
+    const gallery =
+        document.getElementById(
+            "gallery"
+        );
+
+    gallery.innerHTML = "";
+
+    const photos =
+        data.services
+        .map(s=>s.image)
+        .filter(Boolean)
+        .slice(0,8);
+
+    photos.forEach((src,i)=>{
+
+        const img =
+            document.createElement("img");
+
+        img.src = src;
+        img.alt =
+            data.services[i]?.name ||
+            "Safety Net Service";
+
+        img.loading = "lazy";
+
+        gallery.appendChild(img);
+
+    });
+
+}
+
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+function openAdminLogin(){
+
+    document.getElementById(
+        "loginOverlay"
+    ).style.display = "flex";
+
+    document.getElementById(
+        "adminPassword"
+    ).value = "";
+
+    setTimeout(()=>{
+        document.getElementById(
+            "adminPassword"
+        ).focus();
+    },100);
+
+}
+
+
+function closeAdminLogin(){
+
+    document.getElementById(
+        "loginOverlay"
+    ).style.display = "none";
+
+}
+
+
+function loginAdmin(){
+
+    const password =
+        document.getElementById(
+            "adminPassword"
+        ).value;
+
+    if(password !== ADMIN_PASSWORD){
+
+        showToast(
+            "❌ Password गलत है"
+        );
+
+        return;
+
+    }
+
+    sessionStorage.setItem(
+        "dilshaad_admin",
+        "yes"
+    );
+
+    closeAdminLogin();
+
+    document.getElementById(
+        "customerPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "adminPage"
+    ).style.display = "block";
+
+    loadAdminForm();
+
+    window.scrollTo(0,0);
+
+}
+
+
+function logoutAdmin(){
+
+    sessionStorage.removeItem(
+        "dilshaad_admin"
+    );
+
+    document.getElementById(
+        "adminPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "customerPage"
+    ).style.display = "block";
+
+    renderCustomer();
+
+    window.scrollTo(0,0);
+
+}
+
+
+function showCustomerWebsite(){
+
+    document.getElementById(
+        "adminPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "customerPage"
+    ).style.display = "block";
+
+    renderCustomer();
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* =========================================================
+   ADMIN FORM
+========================================================= */
+
+function loadAdminForm(){
+
+    const b =
+        data.business;
+
+    document.getElementById(
+        "adminBusinessName"
+    ).value = b.name;
+
+    document.getElementById(
+        "adminPhone"
+    ).value = b.phone;
+
+    document.getElementById(
+        "adminWhatsApp"
+    ).value = b.whatsapp;
+
+    document.getElementById(
+        "adminEmail"
+    ).value = b.email;
+
+    document.getElementById(
+        "adminAddress"
+    ).value = b.address;
+
+    document.getElementById(
+        "adminMap"
+    ).value = b.map;
+
+    document.getElementById(
+        "adminAbout"
+    ).value = b.about;
+
+    document.getElementById(
+        "adminLogoPreview"
+    ).src = b.logo || DEFAULT_LOGO;
+
+    renderAdminServices();
+
+}
+
+
+/* =========================================================
+   SAVE BUSINESS DETAILS
+========================================================= */
+
+async function saveBusinessDetails(){
+
+    const b =
+        data.business;
+
+    b.name =
+        document.getElementById(
+            "adminBusinessName"
+        ).value.trim();
+
+    b.phone =
+        document.getElementById(
+            "adminPhone"
+        ).value.trim();
+
+    b.whatsapp =
+        document.getElementById(
+            "adminWhatsApp"
+        ).value.trim();
+
+    b.email =
+        document.getElementById(
+            "adminEmail"
+        ).value.trim();
+
+    b.address =
+        document.getElementById(
+            "adminAddress"
+        ).value.trim();
+
+    b.map =
+        document.getElementById(
+            "adminMap"
+        ).value.trim();
+
+    b.about =
+        document.getElementById(
+            "adminAbout"
+        ).value.trim();
+
+    const input =
+        document.getElementById(
+            "logoInput"
+        );
+
+    if(input.files && input.files[0]){
+
+        try{
+
+            showToast(
+                "⏳ Logo compress और save हो रहा है..."
+            );
+
+            b.logo =
+                await compressImage(
+                    input.files[0],
+                    700,
+                    .72
+                );
+
+        }catch(error){
+
+            showToast(
+                "❌ Logo save नहीं हुआ"
+            );
+
+            return;
+
+        }
+
+    }
+
+    const ok =
+        saveData();
+
+    if(ok){
+
+        document.getElementById(
+            "adminLogoPreview"
+        ).src = b.logo;
+
+        renderCustomer();
+
+        showToast(
+            "✅ Business Details Successfully Save हो गईं"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ADMIN SERVICES
+========================================================= */
+
+function renderAdminServices(){
+
+    const box =
+        document.getElementById(
+            "adminServices"
+        );
+
+    box.innerHTML = "";
+
+    data.services.forEach((service,index)=>{
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "service-admin";
+
+        row.innerHTML = `
+
+            <div>
+
+                <img
+                    id="servicePreview${index}"
+                    src="${escapeAttr(service.image)}"
+                    alt="${escapeAttr(service.name)}"
+                >
+
+                <input
+                    style="width:100%;margin-top:8px;"
+                    type="file"
+                    accept="image/*"
+                    onchange="changeServicePhoto(${index},this)"
+                >
+
+            </div>
+
+            <div class="service-admin-content">
+
+                <strong>
+                    Service ${index+1}
+                </strong>
+
+                <input
+                    id="serviceName${index}"
+                    value="${escapeAttr(service.name)}"
+                    placeholder="Service Name"
+                >
+
+                <textarea
+                    id="serviceDesc${index}"
+                    placeholder="Service Description"
+                >${escapeHTML(service.description)}</textarea>
+
+                <button
+                    class="btn btn-blue"
+                    style="width:max-content;"
+                    onclick="saveService(${index})">
+                    💾 Save Service
+                </button>
+
+            </div>
+
+        `;
+
+        box.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================================================
+   SAVE SERVICE
+========================================================= */
+
+function saveService(index){
+
+    const service =
+        data.services[index];
+
+    service.name =
+        document.getElementById(
+            "serviceName"+index
+        ).value.trim();
+
+    service.description =
+        document.getElementById(
+            "serviceDesc"+index
+        ).value.trim();
+
+    if(saveData()){
+
+        renderCustomer();
+        renderAdminServices();
+
+        showToast(
+            "✅ Service Successfully Save हो गई"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CHANGE SERVICE PHOTO
+========================================================= */
+
+async function changeServicePhoto(index,input){
+
+    if(!input.files || !input.files[0]){
+        return;
+    }
+
+    try{
+
+        showToast(
+            "⏳ Photo compress हो रही है..."
+        );
+
+        const image =
+            await compressImage(
+                input.files[0],
+                900,
+                .68
+            );
+
+        data.services[index].image =
+            image;
+
+        if(saveData()){
+
+            renderCustomer();
+            renderAdminServices();
+
+            showToast(
+                "✅ Photo Successfully Save हो गई"
+            );
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "❌ Photo save नहीं हुई"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   QUOTE MODAL
+========================================================= */
+
+let selectedService = "";
+
+function openQuote(serviceName){
+
+    selectedService =
+        serviceName || "";
+
+    document.getElementById(
+        "quoteTitle"
+    ).textContent =
+        selectedService
+        ? selectedService + " - Free Quote"
+        : "Get Free Quote";
+
+    document.getElementById(
+        "quoteRequirement"
+    ).value =
+        selectedService
+        ? selectedService + " quotation चाहिए"
+        : "";
+
+    document.getElementById(
+        "quoteModal"
+    ).style.display = "flex";
+
+}
+
+
+function closeQuote(){
+
+    document.getElementById(
+        "quoteModal"
+    ).style.display = "none";
+
+}
+
+
+function sendQuote(){
+
+    const name =
+        document.getElementById(
+            "quoteName"
+        ).value.trim();
+
+    const requirement =
+        document.getElementById(
+            "quoteRequirement"
+        ).value.trim();
+
+    if(!name){
+
+        alert("कृपया अपना नाम डालें।");
+        return;
+
+    }
+
+    const message =
+        "Hello Dilshaad Safety Project,%0A%0A" +
+        "Name: " +
+        encodeURIComponent(name) +
+        "%0ARequirement: " +
+        encodeURIComponent(requirement);
+
+    const url =
+        "https://wa.me/" +
+        cleanPhone(
+            data.business.whatsapp
+        ) +
+        "?text=" +
+        message;
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+/* =========================================================
+   PHONE / WHATSAPP
+========================================================= */
+
+function cleanPhone(phone){
+
+    return String(phone || "")
+        .replace(/\D/g,"")
+        .replace(/^0/,"");
+
+}
+
+
+function whatsappLink(phone,text){
+
+    let number =
+        cleanPhone(phone);
+
+    if(number.length === 10){
+        number =
+            "91" + number;
+    }
+
+    const defaultText =
+        "Hello Dilshaad Safety Project, mujhe quotation chahiye.";
+
+    return "https://wa.me/" +
+        number +
+        "?text=" +
+        encodeURIComponent(
+            text || defaultText
+        );
+
+}
+
+
+/* =========================================================
+   SECURITY HELPERS
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+function escapeAttr(value){
+
+    return escapeHTML(value);
+
+}
+
+function escapeJS(value){
+
+    return String(value ?? "")
+        .replace(/\\/g,"\\\\")
+        .replace(/'/g,"\\'")
+        .replace(/"/g,"&quot;")
+        .replace(/\n/g," ");
+
+}
+
+
+/* =========================================================
+   EXPORT BACKUP
+========================================================= */
+
+function exportData(){
+
+    const json =
+        JSON.stringify(
+            data,
+            null,
+            2
+        );
+
+    const blob =
+        new Blob(
+            [json],
+            {
+                type:"application/json"
+            }
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+        "dilshaad-safety-project-backup.json";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+    showToast(
+        "✅ Backup download हो गया"
+    );
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetWebsiteData(){
+
+    const confirmReset =
+        confirm(
+            "क्या आप पूरा website data default पर reset करना चाहते हैं?"
+        );
+
+    if(!confirmReset){
+        return;
+    }
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+    data =
+        JSON.parse(
+            JSON.stringify(DEFAULT_DATA)
+        );
+
+    loadAdminForm();
+    renderCustomer();
+
+    showToast(
+        "♻️ Website default data पर reset हो गई"
+    );
+
+}
+
+
+/* =========================================================
+   LOGO UPLOAD
+========================================================= */
+
+document.getElementById(
+    "logoInput"
+).addEventListener(
+    "change",
+    async function(){
+
+        const file =
+            this.files[0];
+
+        if(!file){
+            return;
+        }
+
+        try{
+
+            const image =
+                await compressImage(
+                    file,
+                    700,
+                    .72
+                );
+
+            data.business.logo =
+                image;
+
+            document.getElementById(
+                "adminLogoPreview"
+            ).src = image;
+
+            showToast(
+                "✅ Logo तैयार है। अब Save Business Details दबाएँ।"
+            );
+
+        }catch(error){
+
+            showToast(
+                "❌ Logo process नहीं हुआ"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
+
+document.getElementById(
+    "adminPassword"
+).addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Enter"){
+            loginAdmin();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE MODAL OUTSIDE
+========================================================= */
+
+document.getElementById(
+    "quoteModal"
+).addEventListener(
+    "click",
+    function(e){
+
+        if(e.target === this){
+            closeQuote();
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+renderCustomer();
+
+
+/*
+अगर पहले से admin login है तो dashboard खोलें।
+*/
+
+if(
+    sessionStorage.getItem(
+        "dilshaad_admin"
+    ) === "yes"
+){
+
+    document.getElementById(
+        "customerPage"
+    ).style.display = "none";
+
+    document.getElementById(
+        "adminPage"
+    ).style.display = "block";
+
+    loadAdminForm();
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Service Dashboard</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f9;color:#172033}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+header{
+background:#111827;color:#fff;padding:15px 20px;
+display:flex;justify-content:space-between;align-items:center;
+position:sticky;top:0;z-index:10
+}
+.logo{font-size:20px;font-weight:bold}
+header button{background:#dc2626;color:#fff;border:0;padding:9px 14px;border-radius:8px}
+
+.login{
+min-height:100vh;display:flex;align-items:center;justify-content:center;
+background:linear-gradient(135deg,#111827,#2563eb);padding:20px
+}
+.loginbox{
+background:white;width:100%;max-width:390px;padding:30px;border-radius:18px;
+box-shadow:0 20px 50px #0004
+}
+.loginbox h2{text-align:center}
+input,textarea,select{
+width:100%;padding:11px;border:1px solid #d1d5db;border-radius:8px;
+margin-top:6px;background:#fff
+}
+label{font-size:13px;font-weight:bold}
+.field{margin-bottom:13px}
+.primary{
+width:100%;padding:12px;border:0;border-radius:8px;
+background:#2563eb;color:white;font-weight:bold
+}
+.error{text-align:center;color:#dc2626;margin-top:10px}
+
+.layout{display:flex;min-height:calc(100vh - 65px)}
+.sidebar{
+width:220px;background:white;border-right:1px solid #ddd;padding:15px
+}
+.nav{
+width:100%;border:0;background:white;text-align:left;
+padding:12px;border-radius:8px;margin-bottom:5px;font-weight:bold
+}
+.nav.active,.nav:hover{background:#eaf2ff;color:#2563eb}
+main{flex:1;padding:20px;max-width:1500px}
+.title{
+display:flex;justify-content:space-between;align-items:center;
+margin-bottom:20px
+}
+.btn{border:0;padding:10px 14px;border-radius:8px;font-weight:bold}
+.blue{background:#2563eb;color:white}
+.green{background:#16a34a;color:white}
+.red{background:#dc2626;color:white}
+.gray{background:#e5e7eb}
+
+.cards{
+display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px
+}
+.card{
+background:white;padding:20px;border-radius:14px;border:1px solid #e5e7eb
+}
+.card small{color:#6b7280}
+.card strong{display:block;font-size:26px;margin-top:8px}
+
+.panel{
+background:white;padding:18px;border-radius:14px;border:1px solid #e5e7eb;
+margin-bottom:20px
+}
+.toolbar{display:flex;gap:10px;margin-bottom:15px;flex-wrap:wrap}
+.search{flex:1;min-width:200px}
+
+.tablewrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:850px}
+th,td{padding:11px;border-bottom:1px solid #eee;text-align:left;font-size:14px}
+th{background:#f8fafc}
+.badge{padding:5px 9px;border-radius:20px;font-size:12px;font-weight:bold}
+.paid{background:#dcfce7;color:#166534}
+.pending{background:#fef3c7;color:#92400e}
+.cancelled{background:#fee2e2;color:#991b1b}
+
+.modal{
+position:fixed;inset:0;background:#0008;display:flex;
+align-items:center;justify-content:center;padding:15px;z-index:100
+}
+.modalbox{
+background:white;width:100%;max-width:650px;max-height:92vh;
+overflow:auto;border-radius:16px;padding:20px
+}
+.modalhead{display:flex;justify-content:space-between;align-items:center}
+.close{border:0;background:#eee;width:35px;height:35px;border-radius:50%;font-size:20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.full{grid-column:1/-1}
+
+.customer-page{
+min-height:100vh;background:#f4f6f9;padding-bottom:40px
+}
+.customer-head{
+background:#111827;color:white;text-align:center;padding:30px 15px
+}
+.customer-card{
+max-width:850px;margin:20px auto;background:white;border-radius:15px;
+padding:25px;box-shadow:0 5px 25px #0001
+}
+.business{text-align:center;border-bottom:2px solid #eee;padding-bottom:18px}
+.business h1{margin:5px 0}
+.business p{margin:5px;color:#555}
+.customer-info{
+display:grid;grid-template-columns:1fr 1fr;gap:12px;
+margin:20px 0
+}
+.info{
+background:#f8fafc;padding:13px;border-radius:9px
+}
+.info b{display:block;font-size:12px;color:#6b7280;margin-bottom:5px}
+.service-title{margin-top:25px;border-bottom:1px solid #ddd;padding-bottom:8px}
+.detail-row{
+display:flex;justify-content:space-between;
+padding:11px 0;border-bottom:1px solid #eee
+}
+.total{
+font-size:22px;font-weight:bold;text-align:right;margin-top:18px
+}
+.payment{
+margin-top:20px;padding:15px;border-radius:10px;
+background:#ecfdf5;border:1px solid #bbf7d0
+}
+.note{
+margin-top:20px;background:#fff7ed;padding:15px;border-radius:10px
+}
+.actions{
+display:flex;gap:10px;justify-content:center;margin-top:20px
+}
+a.call{
+display:inline-block;background:#16a34a;color:white;text-decoration:none;
+padding:11px 18px;border-radius:8px;font-weight:bold
+}
+
+@media(max-width:850px){
+.cards{grid-template-columns:1fr 1fr}
+.sidebar{width:180px}
+}
+@media(max-width:600px){
+.layout{display:block}
+.sidebar{width:100%;display:flex;overflow:auto;border-right:0;border-bottom:1px solid #ddd}
+.nav{white-space:nowrap;width:auto}
+main{padding:12px}
+.cards{grid-template-columns:1fr 1fr;gap:8px}
+.card{padding:14px}
+.card strong{font-size:21px}
+.grid,.customer-info{grid-template-columns:1fr}
+.full{grid-column:auto}
+.customer-card{margin:12px;padding:17px}
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOMER VIEW -->
+<div id="customerView" class="customer-page hidden">
+  <div class="customer-head">
+    <h2>Service Details</h2>
+    <p>Your quotation / service information</p>
+  </div>
+
+  <div class="customer-card">
+
+    <div class="business">
+      <h1 id="cBusiness">Your Business Name</h1>
+      <p id="cMobile">Mobile: -</p>
+      <p id="cAddress">Address: -</p>
+    </div>
+
+    <h2>Customer Details</h2>
+
+    <div class="customer-info">
+      <div class="info">
+        <b>Customer Name</b>
+        <span id="cName">-</span>
+      </div>
+
+      <div class="info">
+        <b>Mobile Number</b>
+        <span id="cCustomerMobile">-</span>
+      </div>
+
+      <div class="info">
+        <b>Address</b>
+        <span id="cCustomerAddress">-</span>
+      </div>
+
+      <div class="info">
+        <b>Date</b>
+        <span id="cDate">-</span>
+      </div>
+    </div>
+
+    <h2 class="service-title">Service Details</h2>
+
+    <div class="detail-row">
+      <span>Service</span>
+      <b id="cService">-</b>
+    </div>
+
+    <div class="detail-row">
+      <span>Measurement</span>
+      <b id="cMeasurement">-</b>
+    </div>
+
+    <div class="detail-row">
+      <span>Quantity / Sq.ft.</span>
+      <b id="cQty">-</b>
+    </div>
+
+    <div class="detail-row">
+      <span>Rate</span>
+      <b id="cRate">₹0</b>
+    </div>
+
+    <div class="detail-row">
+      <span>Other Charges</span>
+      <b id="cOther">₹0</b>
+    </div>
+
+    <div class="total">
+      Total: <span id="cTotal">₹0</span>
+    </div>
+
+    <div class="payment">
+      <b>Payment Status:</b>
+      <span id="cStatus">Pending</span>
+    </div>
+
+    <div class="note">
+      <b>Note</b>
+      <p id="cNotes">-</p>
+    </div>
+
+    <div class="actions">
+      <a id="callBtn" class="call" href="#">📞 Call Business</a>
+      <button class="btn blue" onclick="window.print()">🖨 Print</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- LOGIN -->
+<div id="loginPage" class="login">
+  <div class="loginbox">
+    <h2>Admin Login</h2>
+
+    <div class="field">
+      <label>Username</label>
+      <input id="username" placeholder="admin">
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input id="password" type="password" placeholder="Password">
+    </div>
+
+    <button class="primary" onclick="login()">Login</button>
+    <div id="error" class="error"></div>
+  </div>
+</div>
+
+
+<!-- ADMIN -->
+<div id="adminPage" class="hidden">
+
+<header>
+  <div class="logo">Admin Dashboard</div>
+  <button onclick="logout()">Logout</button>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+  <button class="nav active" onclick="page('dashboard',this)">📊 Dashboard</button>
+  <button class="nav" onclick="page('customers',this)">👥 Customers</button>
+  <button class="nav" onclick="page('business',this)">🏢 Business</button>
+</aside>
+
+<main>
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+
+<div class="title">
+  <div>
+    <h2>Dashboard</h2>
+    <p>आपका पूरा business overview</p>
+  </div>
+  <button class="btn blue" onclick="openModal()">+ New Customer</button>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <small>Total Customers</small>
+    <strong id="total">0</strong>
+  </div>
+
+  <div class="card">
+    <small>Paid</small>
+    <strong id="paid">0</strong>
+  </div>
+
+  <div class="card">
+    <small>Pending</small>
+    <strong id="pending">0</strong>
+  </div>
+
+  <div class="card">
+    <small>Total Amount</small>
+    <strong id="amount">₹0</strong>
+  </div>
+</div>
+
+<div class="panel">
+<h3>Recent Customers</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Mobile</th>
+<th>Service</th>
+<th>Total</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody id="recent"></tbody>
+</table>
+</div>
+</div>
+
+</section>
+
+
+<!-- CUSTOMERS -->
+<section id="customers" class="hidden">
+
+<div class="title">
+  <div>
+    <h2>Customer Records</h2>
+    <p>Customer की पूरी details यहाँ manage करें</p>
+  </div>
+  <button class="btn blue" onclick="openModal()">+ Add Customer</button>
+</div>
+
+<div class="panel">
+
+<div class="toolbar">
+<input class="search" id="search" placeholder="Search customer..." oninput="renderCustomers()">
+
+<select id="filter" onchange="renderCustomers()">
+<option value="all">All</option>
+<option value="Paid">Paid</option>
+<option value="Pending">Pending</option>
+<option value="Cancelled">Cancelled</option>
+</select>
+</div>
+
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Mobile</th>
+<th>Service</th>
+<th>Sq.ft.</th>
+<th>Total</th>
+<th>Status</th>
+<th>Link</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="customerTable"></tbody>
+</table>
+</div>
+
+</div>
+</section>
+
+
+<!-- BUSINESS -->
+<section id="business" class="hidden">
+
+<div class="title">
+<h2>Business Details</h2>
+</div>
+
+<div class="panel">
+
+<div class="field">
+<label>Business Name</label>
+<input id="businessName" placeholder="Your Business Name">
+</div>
+
+<div class="field">
+<label>Business Mobile</label>
+<input id="businessMobile" placeholder="9876543210">
+</div>
+
+<div class="field">
+<label>Business Address</label>
+<textarea id="businessAddress" rows="3"></textarea>
+</div>
+
+<button class="btn blue" onclick="saveBusiness()">Save Business Details</button>
+
+</div>
+
+</section>
+
+</main>
+</div>
+</div>
+
+
+<!-- MODAL -->
+<div id="modal" class="modal hidden">
+
+<div class="modalbox">
+
+<div class="modalhead">
+<h2 id="modalTitle">New Customer</h2>
+<button class="close" onclick="closeModal()">×</button>
+</div>
+
+<input type="hidden" id="editId">
+
+<div class="grid">
+
+<div class="field">
+<label>Customer Name *</label>
+<input id="name" placeholder="Customer name">
+</div>
+
+<div class="field">
+<label>Customer Mobile *</label>
+<input id="mobile" placeholder="9876543210">
+</div>
+
+<div class="field full">
+<label>Customer Address</label>
+<textarea id="address" rows="2"></textarea>
+</div>
+
+<div class="field">
+<label>Service</label>
+<input id="service" placeholder="Invisible Grill / Safety Net">
+</div>
+
+<div class="field">
+<label>Measurement</label>
+<input id="measurement" placeholder="10 x 8 ft">
+</div>
+
+<div class="field">
+<label>Quantity / Sq.ft.</label>
+<input id="qty" type="number" placeholder="80">
+</div>
+
+<div class="field">
+<label>Rate / Sq.ft.</label>
+<input id="rate" type="number" placeholder="100">
+</div>
+
+<div class="field">
+<label>Other Charges</label>
+<input id="other" type="number" placeholder="0">
+</div>
+
+<div class="field">
+<label>Status</label>
+<select id="status">
+<option>Pending</option>
+<option>Paid</option>
+<option>Cancelled</option>
+</select>
+</div>
+
+<div class="field">
+<label>Date</label>
+<input id="date" type="date">
+</div>
+
+<div class="field full">
+<label>Notes</label>
+<textarea id="notes" rows="3"></textarea>
+</div>
+
+</div>
+
+<div style="display:flex;justify-content:flex-end;gap:10px;margin-top:15px">
+<button class="btn gray" onclick="closeModal()">Cancel</button>
+<button class="btn blue" onclick="saveCustomer()">Save</button>
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+/* =========================
+   LOGIN
+========================= */
+
+const ADMIN_USER="admin";
+let ADMIN_PASS=localStorage.getItem("adminPassword")||"123456";
+
+function login(){
+
+let u=document.getElementById("username").value.trim();
+let p=document.getElementById("password").value;
+
+if(u===ADMIN_USER && p===ADMIN_PASS){
+
+localStorage.setItem("logged","yes");
+
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("adminPage").classList.remove("hidden");
+
+render();
+
+}else{
+
+document.getElementById("error").textContent="Wrong username or password";
+
+}
+}
+
+function logout(){
+localStorage.removeItem("logged");
+location.reload();
+}
+
+if(localStorage.getItem("logged")==="yes"){
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("adminPage").classList.remove("hidden");
+}
+
+
+/* =========================
+   DATA
+========================= */
+
+let customers=JSON.parse(localStorage.getItem("customers")||"[]");
+
+let business=JSON.parse(
+localStorage.getItem("business")||JSON.stringify({
+name:"Your Business Name",
+mobile:"",
+address:""
+})
+);
+
+function saveData(){
+localStorage.setItem("customers",JSON.stringify(customers));
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function page(name,btn){
+
+["dashboard","customers","business"].forEach(x=>{
+document.getElementById(x).classList.add("hidden");
+});
+
+document.getElementById(name).classList.remove("hidden");
+
+document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));
+btn.classList.add("active");
+
+if(name==="customers") renderCustomers();
+if(name==="business") loadBusiness();
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(id=null){
+
+document.getElementById("modal").classList.remove("hidden");
+
+document.getElementById("editId").value=id||"";
+
+document.getElementById("modalTitle").textContent=id?"Edit Customer":"New Customer";
+
+if(id){
+
+let c=customers.find(x=>x.id===id);
+
+document.getElementById("name").value=c.name;
+document.getElementById("mobile").value=c.mobile;
+document.getElementById("address").value=c.address;
+document.getElementById("service").value=c.service;
+document.getElementById("measurement").value=c.measurement;
+document.getElementById("qty").value=c.qty;
+document.getElementById("rate").value=c.rate;
+document.getElementById("other").value=c.other;
+document.getElementById("status").value=c.status;
+document.getElementById("date").value=c.date;
+document.getElementById("notes").value=c.notes;
+
+}else{
+
+document.querySelectorAll("#modal input,#modal textarea").forEach(x=>x.value="");
+
+document.getElementById("date").value=new Date().toISOString().split("T")[0];
+
+document.getElementById("status").value="Pending";
+
+}
+
+}
+
+function closeModal(){
+document.getElementById("modal").classList.add("hidden");
+}
+
+
+/* =========================
+   SAVE CUSTOMER
+========================= */
+
+function saveCustomer(){
+
+let id=document.getElementById("editId").value;
+
+let name=document.getElementById("name").value.trim();
+let mobile=document.getElementById("mobile").value.trim();
+
+if(!name || !mobile){
+alert("Customer Name और Mobile जरूरी है");
+return;
+}
+
+let qty=Number(document.getElementById("qty").value||0);
+let rate=Number(document.getElementById("rate").value||0);
+let other=Number(document.getElementById("other").value||0);
+
+let c={
+id:id||Date.now().toString(),
+name,
+mobile,
+address:document.getElementById("address").value,
+service:document.getElementById("service").value,
+measurement:document.getElementById("measurement").value,
+qty,
+rate,
+other,
+total:(qty*rate)+other,
+status:document.getElementById("status").value,
+date:document.getElementById("date").value,
+notes:document.getElementById("notes").value
+};
+
+if(id){
+
+let i=customers.findIndex(x=>x.id===id);
+if(i>=0) customers[i]=c;
+
+}else{
+
+customers.unshift(c);
+
+}
+
+saveData();
+closeModal();
+render();
+
+alert("Customer saved successfully");
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+let total=customers.length;
+let paid=customers.filter(x=>x.status==="Paid").length;
+let pending=customers.filter(x=>x.status==="Pending").length;
+
+let amount=customers.reduce((s,x)=>s+Number(x.total||0),0);
+
+document.getElementById("total").textContent=total;
+document.getElementById("paid").textContent=paid;
+document.getElementById("pending").textContent=pending;
+document.getElementById("amount").textContent="₹"+amount.toLocaleString("en-IN");
+
+document.getElementById("recent").innerHTML=
+customers.slice(0,5).map(c=>`
+<tr>
+<td>${safe(c.name)}</td>
+<td>${safe(c.mobile)}</td>
+<td>${safe(c.service)}</td>
+<td>₹${Number(c.total).toLocaleString("en-IN")}</td>
+<td>${badge(c.status)}</td>
+</tr>
+`).join("")||`
+<tr><td colspan="5" style="text-align:center">No records</td></tr>
+`;
+
+renderCustomers();
+
+}
+
+
+/* =========================
+   CUSTOMER TABLE
+========================= */
+
+function renderCustomers(){
+
+let search=(document.getElementById("search")?.value||"").toLowerCase();
+let filter=document.getElementById("filter")?.value||"all";
+
+let data=customers.filter(c=>{
+
+let text=(c.name+" "+c.mobile+" "+c.service).toLowerCase();
+
+return (!search||text.includes(search)) &&
+(filter==="all"||c.status===filter);
+
+});
+
+document.getElementById("customerTable").innerHTML=data.map((c,i)=>`
+
+<tr>
+
+<td>${i+1}</td>
+
+<td><b>${safe(c.name)}</b></td>
+
+<td>${safe(c.mobile)}</td>
+
+<td>${safe(c.service)}</td>
+
+<td>${c.qty||0}</td>
+
+<td>₹${Number(c.total||0).toLocaleString("en-IN")}</td>
+
+<td>${badge(c.status)}</td>
+
+<td>
+<button class="btn green" onclick="openCustomer('${c.id}')">
+Open
+</button>
+</td>
+
+<td>
+<button class="btn blue" onclick="openModal('${c.id}')">Edit</button>
+<button class="btn red" onclick="deleteCustomer('${c.id}')">Delete</button>
+</td>
+
+</tr>
+
+`).join("")||`
+<tr>
+<td colspan="9" style="text-align:center;padding:30px">
+No customer found
+</td>
+</tr>
+`;
+
+}
+
+
+/* =========================
+   CUSTOMER LINK / VIEW
+========================= */
+
+function openCustomer(id){
+
+let url=location.href.split("?")[0]+"?customer="+encodeURIComponent(id);
+
+window.open(url,"_blank");
+
+}
+
+
+/* =========================
+   CUSTOMER PUBLIC PAGE
+========================= */
+
+function checkCustomerPage(){
+
+let params=new URLSearchParams(location.search);
+let id=params.get("customer");
+
+if(!id)return;
+
+let c=customers.find(x=>x.id===id);
+
+if(!c){
+document.body.innerHTML="<h2 style='text-align:center;margin-top:50px'>Customer details not found</h2>";
+return;
+}
+
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("adminPage").classList.add("hidden");
+document.getElementById("customerView").classList.remove("hidden");
+
+document.getElementById("cBusiness").textContent=business.name;
+document.getElementById("cMobile").textContent="Mobile: "+business.mobile;
+document.getElementById("cAddress").textContent="Address: "+business.address;
+
+document.getElementById("cName").textContent=c.name;
+document.getElementById("cCustomerMobile").textContent=c.mobile;
+document.getElementById("cCustomerAddress").textContent=c.address||"-";
+document.getElementById("cDate").textContent=c.date||"-";
+
+document.getElementById("cService").textContent=c.service||"-";
+document.getElementById("cMeasurement").textContent=c.measurement||"-";
+document.getElementById("cQty").textContent=(c.qty||0)+" Sq.ft.";
+document.getElementById("cRate").textContent="₹"+Number(c.rate||0).toLocaleString("en-IN");
+document.getElementById("cOther").textContent="₹"+Number(c.other||0).toLocaleString("en-IN");
+document.getElementById("cTotal").textContent="₹"+Number(c.total||0).toLocaleString("en-IN");
+document.getElementById("cStatus").textContent=c.status;
+document.getElementById("cNotes").textContent=c.notes||"No additional notes";
+
+document.getElementById("callBtn").href="tel:"+c.mobile;
+
+}
+
+checkCustomerPage();
+
+
+/* =========================
+   DELETE
+========================= */
+
+function deleteCustomer(id){
+
+if(!confirm("क्या इस customer को delete करना है?"))return;
+
+customers=customers.filter(x=>x.id!==id);
+
+saveData();
+render();
+
+}
+
+
+/* =========================
+   BUSINESS
+========================= */
+
+function loadBusiness(){
+
+document.getElementById("businessName").value=business.name;
+document.getElementById("businessMobile").value=business.mobile;
+document.getElementById("businessAddress").value=business.address;
+
+}
+
+function saveBusiness(){
+
+business={
+name:document.getElementById("businessName").value,
+mobile:document.getElementById("businessMobile").value,
+address:document.getElementById("businessAddress").value
+};
+
+localStorage.setItem("business",JSON.stringify(business));
+
+alert("Business details saved");
+
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function badge(status){
+
+if(status==="Paid")
+return `<span class="badge paid">Paid</span>`;
+
+if(status==="Cancelled")
+return `<span class="badge cancelled">Cancelled</span>`;
+
+return `<span class="badge pending">Pending</span>`;
+
+}
+
+function safe(x){
+
+return String(x||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+document.getElementById("password").addEventListener("keydown",e=>{
+if(e.key==="Enter")login();
+});
+
+if(localStorage.getItem("logged")==="yes"){
+render();
+}
+
+</script>
+
+</body>
+</html>

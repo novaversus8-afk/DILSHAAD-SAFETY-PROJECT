@@ -935,7 +935,37 @@ Logout
 
 <div class="adminWrap">
 
+<div class="panel">
+<h2>📊 Dashboard</h2>
 
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+
+<div style="background:#eef6ff;padding:18px;border-radius:12px;text-align:center">
+<div style="font-size:28px">👥</div>
+<b id="visitCount">0</b>
+<div>Website Visits</div>
+</div>
+
+<div style="background:#edfff4;padding:18px;border-radius:12px;text-align:center">
+<div style="font-size:28px">📞</div>
+<b id="callCount">0</b>
+<div>Call Clicks</div>
+</div>
+
+<div style="background:#eff7ff;padding:18px;border-radius:12px;text-align:center">
+<div style="font-size:28px">💬</div>
+<b id="whatsappCount">0</b>
+<div>WhatsApp Clicks</div>
+</div>
+
+<div style="background:#fff7ed;padding:18px;border-radius:12px;text-align:center">
+<div style="font-size:28px">📍</div>
+<b id="mapCount">0</b>
+<div>Maps Clicks</div>
+</div>
+
+</div>
+</div>
 <!-- BUSINESS -->
 
 <div class="panel">
@@ -1239,7 +1269,138 @@ let db;
 
 const BUSINESS_KEY="business";
 
+/* =====================================================
+   SIMPLE DASHBOARD COUNTERS
+===================================================== */
 
+const STATS_KEY = "DILSHAAD_STATS";
+
+function getStats(){
+
+    try{
+        return JSON.parse(
+            localStorage.getItem(STATS_KEY)
+        ) || {
+            visits:0,
+            calls:0,
+            whatsapp:0,
+            maps:0
+        };
+    }catch(e){
+
+        return {
+            visits:0,
+            calls:0,
+            whatsapp:0,
+            maps:0
+        };
+
+    }
+
+}
+
+function saveStats(stats){
+
+    localStorage.setItem(
+        STATS_KEY,
+        JSON.stringify(stats)
+    );
+
+}
+
+function updateDashboard(){
+
+    const s = getStats();
+
+    const visit =
+        document.getElementById("visitCount");
+
+    const call =
+        document.getElementById("callCount");
+
+    const whatsapp =
+        document.getElementById("whatsappCount");
+
+    const maps =
+        document.getElementById("mapCount");
+
+    if(visit) visit.textContent = s.visits;
+    if(call) call.textContent = s.calls;
+    if(whatsapp) whatsapp.textContent = s.whatsapp;
+    if(maps) maps.textContent = s.maps;
+
+}
+
+
+/* Website Visit */
+if(!sessionStorage.getItem("dsp_visit_done")){
+
+    const stats = getStats();
+
+    stats.visits++;
+
+    saveStats(stats);
+
+    sessionStorage.setItem(
+        "dsp_visit_done",
+        "yes"
+    );
+
+}
+
+
+/* Click Tracking */
+document.addEventListener(
+    "click",
+    function(e){
+
+        const link =
+        e.target.closest("a");
+
+        if(!link) return;
+
+        const href =
+        String(link.href || "");
+
+        const stats =
+        getStats();
+
+
+        if(href.startsWith("tel:")){
+
+            stats.calls++;
+
+        }
+
+        else if(
+            href.includes("wa.me") ||
+            href.includes("whatsapp")
+        ){
+
+            stats.whatsapp++;
+
+        }
+
+        else if(
+            href.includes("google.com/maps")
+        ){
+
+            stats.maps++;
+
+        }
+
+        else{
+
+            return;
+
+        }
+
+        saveStats(stats);
+
+        updateDashboard();
+
+    }
+);
 /* =====================================================
    DEFAULT BUSINESS
 ===================================================== */
@@ -3418,7 +3579,7 @@ svg
 ===================================================== */
 
 (async function(){
-
+updateDashboard();
 try{
 
 

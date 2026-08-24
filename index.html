@@ -1,0 +1,1193 @@
+<script>
+/* =========================================================
+   DILSHAAD SAFETY PROJECT
+   PERMANENT LOCAL SAVE SYSTEM - INDEXED DB
+   ========================================================= */
+
+const ADMIN_PASSWORD = "1234";
+
+const DB_NAME = "DilshaadSafetyProjectDB";
+const DB_VERSION = 1;
+
+let db;
+
+
+/* =========================================================
+   DEFAULT BUSINESS
+   ========================================================= */
+
+const defaultBusiness = {
+  name: "Dilshaad Safety Project",
+  phone: "7209000233",
+  whatsapp: "7209000233",
+  email: "d.s.safetyprojects7484@gmail.com",
+  address: "Sector 11, Taloja, Navi Mumbai, Maharashtra - 410208, India",
+  map: "https://www.google.com/maps/search/?api=1&query=Sector+11%2C+Taloja%2C+Navi+Mumbai%2C+Maharashtra+410208"
+};
+
+
+/* =========================================================
+   DEFAULT SERVICES
+   ========================================================= */
+
+const defaultServices = [
+
+{
+ name:"Invisible Grill",
+ description:"Balcony और windows के लिए premium stainless-steel invisible grill.",
+ image:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+ name:"Safety Net",
+ description:"Balcony और open areas के लिए strong safety net.",
+ image:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+ name:"Pigeon Safety Net",
+ description:"Balcony को pigeons और unwanted birds से बचाने के लिए.",
+ image:"https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+ name:"Balcony Net",
+ description:"Balcony और open areas के लिए durable protective net.",
+ image:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+ name:"Child Safety Net",
+ description:"High-rise balcony और open spaces के लिए child safety.",
+ image:"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+ name:"Window Invisible Grill",
+ description:"Windows के लिए clear-view invisible grill.",
+ image:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+ name:"Cricket Sports Net",
+ description:"Cricket practice और sports areas के लिए net solutions.",
+ image:"https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+ name:"Bird Net",
+ description:"Bird protection के लिए strong और durable net.",
+ image:"https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+ name:"Mosquito Net",
+ description:"Windows और ventilation areas के लिए mosquito protection.",
+ image:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=90"
+}
+
+];
+
+
+let business = {...defaultBusiness};
+let services = [...defaultServices];
+let logoImage = "";
+
+
+/* =========================================================
+   OPEN DATABASE
+   ========================================================= */
+
+function openDatabase(){
+
+  return new Promise((resolve,reject)=>{
+
+    const request =
+      indexedDB.open(DB_NAME,DB_VERSION);
+
+    request.onupgradeneeded = function(e){
+
+      const database = e.target.result;
+
+      if(!database.objectStoreNames.contains("data")){
+        database.createObjectStore("data");
+      }
+
+    };
+
+    request.onsuccess = function(e){
+
+      db = e.target.result;
+
+      resolve(db);
+
+    };
+
+    request.onerror = function(){
+
+      reject(request.error);
+
+    };
+
+  });
+
+}
+
+
+/* =========================================================
+   DATABASE SAVE
+   ========================================================= */
+
+function dbSave(key,value){
+
+  return new Promise((resolve,reject)=>{
+
+    const tx =
+      db.transaction("data","readwrite");
+
+    const store =
+      tx.objectStore("data");
+
+    const request =
+      store.put(value,key);
+
+    request.onsuccess =
+      ()=>resolve(true);
+
+    request.onerror =
+      ()=>reject(request.error);
+
+  });
+
+}
+
+
+/* =========================================================
+   DATABASE GET
+   ========================================================= */
+
+function dbGet(key){
+
+  return new Promise((resolve,reject)=>{
+
+    const tx =
+      db.transaction("data","readonly");
+
+    const store =
+      tx.objectStore("data");
+
+    const request =
+      store.get(key);
+
+    request.onsuccess =
+      ()=>resolve(request.result);
+
+    request.onerror =
+      ()=>reject(request.error);
+
+  });
+
+}
+
+
+/* =========================================================
+   SAVE BUSINESS
+   ========================================================= */
+
+async function saveBusiness(){
+
+  try{
+
+    const name =
+      document.getElementById("adminName").value.trim();
+
+    const phone =
+      document.getElementById("adminPhone").value.trim();
+
+    const whatsapp =
+      document.getElementById("adminWhatsapp").value.trim();
+
+    const email =
+      document.getElementById("adminEmail").value.trim();
+
+    const address =
+      document.getElementById("adminAddress").value.trim();
+
+    const map =
+      document.getElementById("adminMap").value.trim();
+
+
+    if(!name){
+
+      alert("Business Name खाली नहीं हो सकता।");
+      return;
+
+    }
+
+    if(!phone){
+
+      alert("Contact Number डालें।");
+      return;
+
+    }
+
+    if(!address){
+
+      alert("Business Address डालें।");
+      return;
+
+    }
+
+
+    business = {
+
+      name:name,
+
+      phone:phone,
+
+      whatsapp:whatsapp || phone,
+
+      email:email,
+
+      address:address,
+
+      map:map
+
+    };
+
+
+    await dbSave(
+      "business",
+      business
+    );
+
+
+    applyBusiness();
+
+    showToast(
+      "✅ Business Details Save हो गया"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Save नहीं हुआ। Browser में Storage की समस्या है। Page को एक बार refresh करके फिर Save करें।"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   SAVE SERVICE
+   ========================================================= */
+
+async function saveService(index){
+
+  try{
+
+    const description =
+      document.getElementById(
+        "description-"+index
+      ).value.trim();
+
+
+    services[index].description =
+      description;
+
+
+    await dbSave(
+      "services",
+      services
+    );
+
+
+    renderServices();
+
+    renderAdminServices();
+
+    showToast(
+      "✅ Service Save हो गई"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert("Service save नहीं हुई।");
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGO SAVE
+   ========================================================= */
+
+async function changeLogo(event){
+
+  const file =
+    event.target.files[0];
+
+  if(!file) return;
+
+
+  try{
+
+    logoImage = file;
+
+    await dbSave(
+      "logo",
+      file
+    );
+
+
+    showLogo(file);
+
+    showToast(
+      "✅ Business Logo Save हो गया"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert("Logo save नहीं हुआ।");
+
+  }
+
+}
+
+
+/* =========================================================
+   SHOW LOGO
+   ========================================================= */
+
+function showLogo(file){
+
+  if(!file) return;
+
+
+  const url =
+    URL.createObjectURL(file);
+
+
+  const customerLogo =
+    document.getElementById(
+      "customerLogo"
+    );
+
+  const adminLogo =
+    document.getElementById(
+      "adminLogoPreview"
+    );
+
+
+  if(customerLogo)
+    customerLogo.src = url;
+
+  if(adminLogo)
+    adminLogo.src = url;
+
+}
+
+
+/* =========================================================
+   LOAD SAVED DATA
+   ========================================================= */
+
+async function loadSavedData(){
+
+  try{
+
+    const savedBusiness =
+      await dbGet("business");
+
+
+    if(savedBusiness){
+
+      business =
+        savedBusiness;
+
+    }else{
+
+      await dbSave(
+        "business",
+        defaultBusiness
+      );
+
+    }
+
+
+    const savedServices =
+      await dbGet("services");
+
+
+    if(
+      savedServices &&
+      Array.isArray(savedServices)
+    ){
+
+      services =
+        savedServices;
+
+    }else{
+
+      await dbSave(
+        "services",
+        defaultServices
+      );
+
+    }
+
+
+    const savedLogo =
+      await dbGet("logo");
+
+
+    if(savedLogo){
+
+      logoImage =
+        savedLogo;
+
+      showLogo(savedLogo);
+
+    }
+
+
+    applyBusiness();
+
+    renderServices();
+
+    renderGallery();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Database load error. Browser refresh करें।"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   BUSINESS APPLY
+   ========================================================= */
+
+function applyBusiness(){
+
+  const setText = (id,value)=>{
+
+    const el =
+      document.getElementById(id);
+
+    if(el)
+      el.textContent = value;
+
+  };
+
+
+  setText(
+    "navBusinessName",
+    business.name
+  );
+
+  setText(
+    "heroBusinessName",
+    business.name
+  );
+
+  setText(
+    "contactBusinessName",
+    business.name
+  );
+
+  setText(
+    "contactPhone",
+    business.phone
+  );
+
+  setText(
+    "contactEmail",
+    business.email
+  );
+
+  setText(
+    "contactAddress",
+    business.address
+  );
+
+
+  const tel =
+    "tel:" +
+    business.phone.replace(/\D/g,"");
+
+
+  const setHref=(id,url)=>{
+
+    const el =
+      document.getElementById(id);
+
+    if(el)
+      el.href=url;
+
+  };
+
+
+  setHref("navCall",tel);
+
+  setHref("heroCall",tel);
+
+  setHref("contactCall",tel);
+
+
+  const number =
+    (business.whatsapp || business.phone)
+    .replace(/\D/g,"");
+
+
+  const waNumber =
+    number.length===10
+    ? "91"+number
+    : number;
+
+
+  const wa =
+    "https://wa.me/" +
+    waNumber +
+    "?text=" +
+    encodeURIComponent(
+      "Hello, मुझे " +
+      business.name +
+      " से quotation चाहिए।"
+    );
+
+
+  setHref("navWhatsapp",wa);
+
+  setHref("heroWhatsapp",wa);
+
+  setHref("contactWhatsapp",wa);
+
+  setHref(
+    "contactWhatsappButton",
+    wa
+  );
+
+
+  setHref(
+    "heroMap",
+    business.map
+  );
+
+  setHref(
+    "contactMap",
+    business.map
+  );
+
+
+  const frame =
+    document.getElementById(
+      "mapFrame"
+    );
+
+
+  if(frame){
+
+    frame.src =
+      "https://www.google.com/maps?q="+
+      encodeURIComponent(
+        business.address
+      )+
+      "&output=embed";
+
+  }
+
+
+  if(logoImage){
+
+    showLogo(logoImage);
+
+  }
+
+}
+
+
+/* =========================================================
+   SERVICES CUSTOMER
+   ========================================================= */
+
+function renderServices(){
+
+  const grid =
+    document.getElementById(
+      "servicesGrid"
+    );
+
+
+  if(!grid) return;
+
+
+  grid.innerHTML = "";
+
+
+  services.forEach((service)=>{
+
+    const number =
+      (business.whatsapp ||
+       business.phone)
+       .replace(/\D/g,"");
+
+
+    const waNumber =
+      number.length===10
+      ? "91"+number
+      : number;
+
+
+    const wa =
+      "https://wa.me/" +
+      waNumber +
+      "?text=" +
+      encodeURIComponent(
+        "Hello, मुझे " +
+        service.name +
+        " का quotation चाहिए।"
+      );
+
+
+    grid.innerHTML += `
+
+      <article class="card">
+
+        <img
+          src="${service.image}"
+          alt="${service.name}"
+          loading="lazy">
+
+        <div class="card-body">
+
+          <h3>
+            ${service.name}
+          </h3>
+
+          <p>
+            ${service.description}
+          </p>
+
+          <a
+            class="btn admin-btn"
+            target="_blank"
+            href="${wa}">
+
+            Get Quote
+
+          </a>
+
+        </div>
+
+      </article>
+
+    `;
+
+  });
+
+}
+
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
+function renderGallery(){
+
+  const gallery =
+    document.getElementById(
+      "galleryGrid"
+    );
+
+
+  if(!gallery) return;
+
+
+  gallery.innerHTML = "";
+
+
+  services.slice(0,6)
+  .forEach(service=>{
+
+    gallery.innerHTML += `
+
+      <div class="gallery-item">
+
+        <img
+          src="${service.image}"
+          alt="${service.name}"
+          loading="lazy">
+
+        <div class="gallery-caption">
+          ${service.name}
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+/* =========================================================
+   ADMIN DASHBOARD
+   ========================================================= */
+
+function openLogin(){
+
+  document
+  .getElementById("loginModal")
+  .classList.add("show");
+
+  document
+  .getElementById("loginPassword")
+  .focus();
+
+}
+
+
+function closeLogin(){
+
+  document
+  .getElementById("loginModal")
+  .classList.remove("show");
+
+}
+
+
+function login(){
+
+  const password =
+    document.getElementById(
+      "loginPassword"
+    ).value;
+
+
+  if(password !== ADMIN_PASSWORD){
+
+    alert("❌ Password गलत है");
+
+    return;
+
+  }
+
+
+  closeLogin();
+
+
+  document
+  .getElementById("customerPage")
+  .classList.add("hidden");
+
+
+  document
+  .getElementById("adminPage")
+  .classList.remove("hidden");
+
+
+  fillAdmin();
+
+}
+
+
+function logout(){
+
+  document
+  .getElementById("adminPage")
+  .classList.add("hidden");
+
+
+  document
+  .getElementById("customerPage")
+  .classList.remove("hidden");
+
+}
+
+
+/* =========================================================
+   ADMIN FORM
+   ========================================================= */
+
+function fillAdmin(){
+
+  document.getElementById(
+    "adminName"
+  ).value =
+  business.name;
+
+
+  document.getElementById(
+    "adminPhone"
+  ).value =
+  business.phone;
+
+
+  document.getElementById(
+    "adminWhatsapp"
+  ).value =
+  business.whatsapp;
+
+
+  document.getElementById(
+    "adminEmail"
+  ).value =
+  business.email;
+
+
+  document.getElementById(
+    "adminAddress"
+  ).value =
+  business.address;
+
+
+  document.getElementById(
+    "adminMap"
+  ).value =
+  business.map;
+
+
+  if(logoImage){
+
+    showLogo(logoImage);
+
+  }
+
+
+  renderAdminServices();
+
+}
+
+
+/* =========================================================
+   ADMIN SERVICES
+   ========================================================= */
+
+function renderAdminServices(){
+
+  const box =
+    document.getElementById(
+      "adminServices"
+    );
+
+
+  if(!box) return;
+
+
+  box.innerHTML = "";
+
+
+  services.forEach((service,index)=>{
+
+    box.innerHTML += `
+
+      <div class="service-admin">
+
+        <img
+          id="preview-${index}"
+          src="${service.image}"
+          alt="${service.name}">
+
+        <div>
+
+          <h3>
+            ${service.name}
+          </h3>
+
+          <label>
+            Service Description
+          </label>
+
+          <input
+            id="description-${index}"
+            value="${escapeHTML(
+              service.description
+            )}">
+
+
+          <label>
+            नई Photo Upload करें
+          </label>
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="
+              uploadServicePhoto(event,${index})
+            ">
+
+
+          <br><br>
+
+
+          <button
+            class="btn save-btn"
+            onclick="
+              saveService(${index})
+            ">
+
+            💾 Save Service
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+/* =========================================================
+   SERVICE PHOTO
+   ========================================================= */
+
+function uploadServicePhoto(event,index){
+
+  const file =
+    event.target.files[0];
+
+  if(!file) return;
+
+
+  const url =
+    URL.createObjectURL(file);
+
+
+  services[index].image =
+    url;
+
+
+  document.getElementById(
+    "preview-"+index
+  ).src = url;
+
+
+  /*
+    Important:
+    IndexedDB Blob में actual file save होगा.
+  */
+
+  services[index]._uploadedFile =
+    file;
+
+}
+
+
+/* =========================================================
+   SAVE SERVICE WITH FILE
+   ========================================================= */
+
+async function saveService(index){
+
+  try{
+
+    const description =
+      document.getElementById(
+        "description-"+index
+      ).value.trim();
+
+
+    services[index].description =
+      description;
+
+
+    const input =
+      document.querySelector(
+        `#description-${index}`
+      )
+      .parentElement
+      .querySelector(
+        'input[type="file"]'
+      );
+
+
+    if(
+      input &&
+      input.files &&
+      input.files[0]
+    ){
+
+      const file =
+        input.files[0];
+
+
+      const blobURL =
+        URL.createObjectURL(file);
+
+
+      services[index].image =
+        blobURL;
+
+
+      services[index].file =
+        file;
+
+    }
+
+
+    await dbSave(
+      "services",
+      services
+    );
+
+
+    /*
+      File objects can be stored directly
+      in IndexedDB.
+    */
+
+
+    renderServices();
+
+    renderGallery();
+
+    renderAdminServices();
+
+
+    showToast(
+      "✅ Service और Photo Save हो गई"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Photo Save नहीं हुई: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ESCAPE
+   ========================================================= */
+
+function escapeHTML(text){
+
+  return String(text)
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  setTimeout(()=>{
+
+    toast.classList.remove(
+      "show"
+    );
+
+  },3000);
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+async function startApp(){
+
+  document.getElementById(
+    "year"
+  ).textContent =
+  new Date().getFullYear();
+
+
+  try{
+
+    await openDatabase();
+
+    await loadSavedData();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Browser storage start नहीं हो पाया। Chrome में page खोलकर फिर try करें।"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ENTER LOGIN
+   ========================================================= */
+
+document
+.getElementById("loginPassword")
+.addEventListener(
+  "keydown",
+  function(e){
+
+    if(e.key === "Enter"){
+
+      login();
+
+    }
+
+  }
+);
+
+
+/* START */
+
+startApp();
+
+</script>
